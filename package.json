@@ -1,0 +1,13 @@
+{
+    "name": "pizzaman",
+    "version": "0.1.0",
+    "main": "lib/index.js",
+    "license": "GNU GPLv3",
+    "bin": {
+        "pizzaman": "lib/index.js"
+    },
+    "dependencies": {
+        "@types/yargs": "^17.0.13",
+        "yargs": "^17.6.2"
+    }
+}
