@@ -13,5 +13,6 @@
         /* Type Checking */
         "strict": true,
         "skipLibCheck": true
-    }
+    },
+    "exclude": ["node_modules", "__tests__"]
 }
