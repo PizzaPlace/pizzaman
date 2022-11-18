@@ -6,8 +6,17 @@
     "bin": {
         "pizzaman": "lib/index.js"
     },
+    "scripts": {
+        "start": "npm run build && node .",
+        "build": "tsc"
+    },
     "dependencies": {
-        "@types/yargs": "^17.0.13",
-        "yargs": "^17.6.2"
+        "chalk": "4.1.2",
+        "commander": "^9.4.1",
+        "figlet": "^1.5.2",
+        "nanospinner": "^1.1.0"
+    },
+    "devDependencies": {
+        "@types/figlet": "^1.5.5"
     }
 }
