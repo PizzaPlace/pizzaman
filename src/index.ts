@@ -1,8 +1,4 @@
-import yargs from "yargs/yargs"
-import { hideBin } from "yargs/helpers"
-import FileManager from "./modules/FileManager/FileManager"
-import path from "path"
+import { Command } from 'commander'
+import Cli from './modules/Cli'
 
-const argv = yargs(hideBin(process.argv)).argv
-
-// SOON (tm)
+new Cli(new Command()).start()
