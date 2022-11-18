@@ -1,6 +1,5 @@
 import chalk from 'chalk'
 import { Argument, Command } from 'commander'
-import { createSpinner } from 'nanospinner'
 import Cli from '../modules/Cli'
 import FileManager from '../modules/FileManager'
 import { ComponentType } from '../typings/ComponentType'
