@@ -5,6 +5,7 @@ import chalk from 'chalk'
 import figlet from 'figlet'
 import { createSpinner } from 'nanospinner'
 import { ComponentType } from '../../typings/ComponentType'
+import FileManager from '../FileManager'
 
 export default class Cli {
     constructor(private _program: Command) {}
@@ -70,7 +71,35 @@ export default class Cli {
             .description("The Dev CLI Tool for PizzaPlace's Bot!")
             .addHelpText('before', chalk.red(figlet.textSync('Pizzaman')))
 
+        await FileManager.setOpts()
         await this._getCommands()
         await this._program.parseAsync()
+    }
+
+    public async test() {
+        await FileManager.setOpts().catch(() =>
+            console.log(
+                chalk.red(
+                    '[OH OH RETARD ALERT] You forgot to add a pizzaman.json file!\n\n'
+                ) +
+                    chalk.blue(
+                        [
+                            'Heres a demo one',
+                            chalk.cyan('{'),
+
+                            chalk.blueBright('   "command":') +
+                                chalk.greenBright(' "./commands"'),
+
+                            chalk.blueBright('   "event":') +
+                                chalk.greenBright(' "./events",'),
+
+                            chalk.blueBright('   "module":') +
+                                chalk.greenBright(' "./module",'),
+
+                            chalk.cyan('}'),
+                        ].join('\n')
+                    )
+            )
+        )
     }
 }
