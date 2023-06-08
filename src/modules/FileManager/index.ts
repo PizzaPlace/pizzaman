@@ -2,13 +2,29 @@ import { promises as fs } from 'fs'
 import path from 'path'
 import { ComponentType } from '../../typings/ComponentType'
 
+export type FMOpts = { [key in ComponentType]: string }
+
 export default class FileManager {
     // Takes in { key: path } (Path is based on process.cwd())
     // Eg: { command: './bot/slashCommands'}
-    constructor(
-        private _fmOpts: { [key in ComponentType]: string },
-        private _defaultCommandCat: string = 'misc'
-    ) {}
+
+    private static _fmOpts: FMOpts
+
+    constructor(private _defaultCommandCat: string = 'misc') {}
+
+    public static async setOpts() {
+        FileManager._fmOpts = (
+            await import(path.join(process.cwd(), './pizzaman.json')).catch(
+                () => {
+                    throw new Error(
+                        'Please create a `pizzaman.json` file to use pizzaman'
+                    )
+                }
+            )
+        ).default
+
+        console.log(FileManager._fmOpts)
+    }
 
     private async _pathExists(path: string) {
         try {
@@ -54,7 +70,7 @@ export default class FileManager {
             throw err
         }
 
-        const createPath = this._fmOpts[compType]
+        const createPath = FileManager._fmOpts[compType]
 
         if (!createPath) throw new Error('Specify a valid createType')
 
