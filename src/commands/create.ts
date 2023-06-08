@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import { Argument, Command } from 'commander'
 import Cli from '../modules/Cli'
 import FileManager from '../modules/FileManager'
@@ -17,11 +16,7 @@ const command = new Command()
     .action(async (type: ComponentType, name: string, opts: object) => {
         Cli.load({
             callback: async () => {
-                return await new FileManager({
-                    command: '__tests__/commands',
-                    event: '__tests__/events',
-                    module: '__tests/modules',
-                }).create(type, name)
+                return await new FileManager().create(type, name)
             },
             beforeText: `Creating ${type}`,
             component: type,
